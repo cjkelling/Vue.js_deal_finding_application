@@ -1,5 +1,16 @@
 require 'spec_helper'
 
-describe Offer do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Offer, type: :model do
+  describe 'validations' do
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :description }
+    it { should validate_presence_of :terms }
+    it { should validate_presence_of :image_url }
+    it { should validate_presence_of :expiration }
+  end
+
+  describe 'relationships' do
+    it { should have_many :retailer_offers }
+    it { should have_many(:retailers).through(:retailer_offers) }
+  end
 end
