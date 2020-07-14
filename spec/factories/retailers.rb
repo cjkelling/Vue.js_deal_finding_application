@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :retailer do
-    name "MyString"
+    name { "MyString" }
   end
 end
