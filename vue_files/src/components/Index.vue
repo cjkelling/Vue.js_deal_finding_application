@@ -11,10 +11,9 @@
     </header>
 
     <main>
-
       <div class="gallery" v-if="gallery">
         <div class="offer-card" v-for="offer in offers">
-          <div @click="offerShow(offer.id)">
+          <div @click="offer.views++, offerShow(offer.id)">
             <div class="image-container">
               <img class="image" :src='offer.image_url'>
             </div>
@@ -46,7 +45,6 @@
           </div>
         </div>
       </div>
-
     </main>
 
   </div>
@@ -77,14 +75,13 @@
           .catch(e => {this.errors.push(e)})
       },
       registerView(id) {
-        console.log("this is not working")
         axios.patch(this.endpoint + '/' + id, {
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*"
           }
         })
-          .then(response => {console.log("this is working")})
+          .then(response => {})
           .catch(e => {this.errors.push(e)})
       },
       offerShow(id) {
