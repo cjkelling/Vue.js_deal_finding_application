@@ -38,7 +38,7 @@
             <h3>Offer Expiration: </h3>
             <p>{{formatDate(offer.expiration)}}</p>
             <h3>Retailers Accepting Offer: </h3>
-            <p v-if="offer.retailers.length" v-for="retailer in retailers">{{retailer.name}}</p>
+            <p v-if="offer.retailers.length" v-for="retailer in offer.retailers">{{retailer.name}}</p>
             <h3>Offer Total Views: </h3>
             <p>{{offer.views}}</p>
             <button @click="gallery = !gallery">All Offers</button>
