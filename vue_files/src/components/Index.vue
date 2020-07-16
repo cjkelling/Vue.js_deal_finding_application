@@ -2,7 +2,7 @@
   <div id="app">
 
     <header>
-      <h1>Ibotta Offers</h1>
+      <img class='logo-image' :src='logo'>
       <ul v-if="errors">
         <li v-for="error of errors">
           {{error.message}}
@@ -18,7 +18,7 @@
               <img class="image" :src='offer.image_url'>
             </div>
             <div class="description-container">
-              <p class="description">{{offer.description}}</p>
+              <p class="description">{{offer.name}}</p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
             <p>{{offer.terms}}</p>
             <h3>Offer Expiration: </h3>
             <p>{{formatDate(offer.expiration)}}</p>
-            <h3>Retailers Accepting Offer: </h3>
+            <h3 v-if="offer.retailers.length">Retailers Accepting Offer: </h3>
             <p v-if="offer.retailers.length" v-for="retailer in offer.retailers">{{retailer.name}}</p>
             <h3>Offer Total Views: </h3>
             <p>{{offer.views}}</p>
@@ -60,6 +60,8 @@
         errors:[],
         gallery: true,
         offerId: null,
+        search: '',
+        logo: 'https://home.ibotta.com/wp-content/uploads/2019/06/IbottaLogo_Primary_Pink.png',
         endpoint: 'http://localhost:3000/api/v1/offers'
       }
     },
@@ -100,6 +102,9 @@
 </script>
 
 <style scoped>
+.logo-image {
+  width: 15%;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -114,13 +119,14 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+  background-color: white;
   width: 15rem;
   height: 18rem;
   padding: 0.8rem;
   margin: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 0 8px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   transition: 0.2s;
   cursor: pointer;
 }
@@ -148,7 +154,6 @@
 
 .description {
   object-fit: contain;
-  overflow-wrap: break-word;
 }
 
 .offer-card-detailed-container{
@@ -163,6 +168,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+  background-color: white;
   width: 75vw;
   height: 75vh;
   padding: 0.8rem;
@@ -170,7 +176,6 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 0 8px 0 rgba(0, 0, 0, 0.19);
-  cursor: pointer;
 }
 
 .image-container-detailed {
