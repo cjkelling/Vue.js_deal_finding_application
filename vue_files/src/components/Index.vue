@@ -5,15 +5,23 @@
       </header>
       <main>
         <div class="gallery">
-          <div v-for="offer in offers">
-            <h2>{{offer.name}}</h2>
+          <div class="offer-card" v-for="offer in offers">
+            <div class="image-container">
+              <img class="image" :src='offer.image_url'>
+            </div>
             <p>{{offer.description}}</p>
-            <p>{{offer.terms}}</p>
-            <img :src='offer.image_url'/>
-            <p v-if="offer.retailers.length > 0">{{'it exists'}}</p>
+            <p v-if="offer.retailers.length > 0">{{'Has Retailer Information'}}</p>
           </div>
         </div>
         <div class="show">
+          <div v-for="offer in offers">
+            <h2>{{offer.name}}</h2>
+            <img :src='offer.image_url'/>
+            <p>{{offer.description}}</p>
+            <p>{{offer.terms}}</p>
+            <p>{{offer.experation}}</p>
+            <p v-if="offer.retailers.length > 0">{{'Has Retailer Information'}}</p>
+          </div>
         </div>
       </main>
     </div>
@@ -43,94 +51,41 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-* {
-    margin: 0;
-    padding: 0;
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 3rem;
 }
-#index {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    padding: 50px;
+.offer-card {
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 14rem;
+  height: 17rem;
+  padding: 0.8rem;
+  margin: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 0 8px 0 rgba(0, 0, 0, 0.19);
+  transition: 0.2s;
+  cursor: pointer;
 }
-#main-heading {
-    padding: 15px;
-    border-bottom: 2px solid #000;
-    width: 80%;
-    margin: auto;
-    font-family: 'Sen', sans-serif;
+.offer-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
 }
-#input-container {
-    padding: 30px;
-    text-align: center;
+
+.image-container {
+  width: 13rem;
+  height: 10rem;
 }
-#from-currency, #to-currency {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 150px;
-    margin: 5px;
-}
-#amount {
-    border: 1px solid #ccc;
-    padding: 11px;
-}
-#result-container {
-    padding: 15px;
-    margin-top: 20px;
-    font-family: 'Roboto', sans-serif;
-}
-#from-span {
-    color: #DA3732;
-}
-#to-span {
-    color: #008000;
-}
-#convert-btn, #clear-btn {
-    padding: 11px 15px;
-    border: none;
-    color: #f4f4f4;
-    margin-top: 15px;
-    border-radius: 5px;
-}
-#convert-btn {
-    background-color: #008000;
-    color: #fff
-}
-#clear-btn {
-    color: #000;
-}
-.input-text  {
-    font-family: 'Roboto', sans-serif;
-}
-@media screen and (max-width: 768px) {
-    #index {
-        width: 100%;
-        padding: 10px;
-        overflow-x: hidden !important;
-    }
-    #main-heading {
-        width: 80%;
-        font-size: 18px;
-        margin: auto;
-    }
-    #input-container {
-        padding: 5px;
-    }
-    #from-currency, #to-currency {
-        display: block;
-        text-align: center;
-        width: 50%;
-        margin: 10px auto;
-    }
-    .input-text {
-        display: block;
-        margin-top: 10px;
-    }
-    #amount {
-        width: 45%;
-        margin: auto;
-    }
+.image{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 </style>
