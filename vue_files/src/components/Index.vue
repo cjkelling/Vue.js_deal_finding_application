@@ -28,7 +28,7 @@
             <p>{{offer.description}}</p>
             <h3>Offer Terms:</h3>
             <p>{{offer.terms}}</p>
-            <h3>Offer Experation:</h3>
+            <h3>Offer Expiration:</h3>
             <p>{{formatDate(offer.expiration)}}</p>
             <h3>Retailers Accepting Offer:</h3>
             <p v-if="offer.retailers.length > 0">{{'Has Retailer Information'}}</p>
@@ -55,12 +55,15 @@
       this.getAllOffers();
     },
 
-    methods: {
+    computed: {
       getAllOffers() {
         fetch(this.endpoint)
           .then(response => response.json())
           .then(result => { this.offers = result; })
-      },
+      }
+    },
+
+    methods: {
       offerShow(id) {
         this.gallery = !this.gallery,
         this.offerId = id
@@ -146,7 +149,6 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 0 8px 0 rgba(0, 0, 0, 0.19);
-  transition: 0.2s;
   cursor: pointer;
 }
 
