@@ -1,9 +1,17 @@
 <template>
   <div id="app">
+
     <header>
       <h1>Ibotta Offers</h1>
+      <ul v-if="errors">
+        <li v-for="error of errors">
+          {{error.message}}
+        </li>
+      </ul>
     </header>
+
     <main>
+
       <div class="gallery" v-if="gallery">
         <div class="offer-card" v-for="offer in offers">
           <div @click="offerShow(offer.id)">
@@ -13,10 +21,10 @@
             <div class="description-container">
               <p class="description">{{offer.description}}</p>
             </div>
-            <p v-if="offer.retailers.length > 0">{{'Has Retailer Information'}}</p>
           </div>
         </div>
       </div>
+
       <div v-if="!gallery" v-for="offer in offers">
         <div class="offer-card-detailed-container">
           <div class="offer-card-detailed" v-if="offer.id === offerId">
@@ -24,30 +32,37 @@
             <div class="image-container-detailed">
               <img class="image" :src='offer.image_url'>
             </div>
-            <h3>Offer Description:</h3>
+            <h3>Offer Description: </h3>
             <p>{{offer.description}}</p>
-            <h3>Offer Terms:</h3>
+            <h3>Offer Terms: </h3>
             <p>{{offer.terms}}</p>
-            <h3>Offer Expiration:</h3>
+            <h3>Offer Expiration: </h3>
             <p>{{formatDate(offer.expiration)}}</p>
-            <h3>Retailers Accepting Offer:</h3>
-            <p v-if="offer.retailers.length > 0">{{'Has Retailer Information'}}</p>
+            <h3>Retailers Accepting Offer: </h3>
+            <p v-if="offer.retailers.length" v-for="retailer in retailers">{{retailer.name}}</p>
+            <h3>Offer Total Views: </h3>
+            <p>{{offer.views}}</p>
             <button @click="gallery = !gallery">All Offers</button>
           </div>
         </div>
       </div>
+
     </main>
+
   </div>
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default{
     data() {
       return{
         offers:[],
+        errors:[],
         gallery: true,
         offerId: null,
-        endpoint: 'http://localhost:3000/api/v1/home'
+        endpoint: 'http://localhost:3000/api/v1/offers'
       }
     },
 
@@ -55,18 +70,27 @@
       this.getAllOffers();
     },
 
-    computed: {
-      getAllOffers() {
-        fetch(this.endpoint)
-          .then(response => response.json())
-          .then(result => { this.offers = result; })
-      }
-    },
-
     methods: {
+      getAllOffers() {
+        axios.get(this.endpoint)
+          .then(response => {this.offers = response.data; })
+          .catch(e => {this.errors.push(e)})
+      },
+      registerView(id) {
+        console.log("this is not working")
+        axios.patch(this.endpoint + '/' + id, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          }
+        })
+          .then(response => {console.log("this is working")})
+          .catch(e => {this.errors.push(e)})
+      },
       offerShow(id) {
         this.gallery = !this.gallery,
-        this.offerId = id
+        this.offerId = id,
+        this.registerView(id)
       },
       formatDate(data) {
         var year = data.slice(0, 4);
@@ -111,7 +135,7 @@
 
 .description-container {
   width: 13rem;
-  height: 4rem;
+  height: 8rem;
 }
 
 .offer-card:hover {
