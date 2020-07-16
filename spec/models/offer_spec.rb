@@ -7,6 +7,7 @@ RSpec.describe Offer, type: :model do
     it { should validate_presence_of :terms }
     it { should validate_presence_of :image_url }
     it { should validate_presence_of :expiration }
+    it { should validate_presence_of :views }
   end
 
   describe 'relationships' do

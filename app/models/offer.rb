@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
-  validates_presence_of :name, :description, :terms, :image_url, :expiration
+  validates_presence_of :name, :description, :terms, :image_url, :expiration, :views
   has_many :retailer_offers
   has_many :retailers, through: :retailer_offers
 end
