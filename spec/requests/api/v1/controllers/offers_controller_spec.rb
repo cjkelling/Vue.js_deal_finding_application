@@ -14,4 +14,22 @@ RSpec.describe Api::V1::OffersController, type: :controller do
       expect(offers.count).to eq(5)
     end
   end
+
+  describe 'PATCH update' do
+    it 'receives a PATCH request for offer views' do
+      create(:offer)
+
+      offer = Offer.last
+
+      expect(offer.views).to eq(0)
+
+      patch :update, params: { use_route: "/api/v1/offers/", id: "#{offer.id}" }
+
+      expect(response).to be_successful
+
+      offer.reload
+
+      expect(offer.views).to eq(1)
+    end
+  end
 end
