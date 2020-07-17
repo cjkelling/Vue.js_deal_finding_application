@@ -12,12 +12,16 @@
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'museo-sans','Arial';
+  color: #303030;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+  background-color: #f9f9f9;
 }
 
 h1, h2 {
