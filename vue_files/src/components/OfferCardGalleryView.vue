@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: "OfferCardGalleryView",
     computed: {
@@ -29,6 +31,7 @@
       offerShow(id) {
         this.$store.state.gallery = !this.$store.state.gallery,
         this.$store.state.offerId = id,
+        this.$store.state.search = '',
         this.registerView(id)
       },
       registerView(id) {

@@ -10,6 +10,7 @@
 
 <style scoped>
   .logo-image {
+    margin-left: 60px;
     width: 15%;
   }
 </style>
