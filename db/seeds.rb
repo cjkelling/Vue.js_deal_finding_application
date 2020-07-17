@@ -19,7 +19,7 @@ end
 
 CSV.foreach(Rails.root.join('db','retailers.seed.csv').to_s, headers: true) do |retailer|
   CSV.foreach(Rails.root.join('db','offers.seed.csv').to_s, headers: true) do |offer|
-    if(offer["description"].include?(retailer["name"]))
+    if(offer["description"].include?(retailer["name"]) || offer["terms"].include?(retailer["name"]))
       if(!RetailerOffer.find_by(retailer_id: retailer["id"], offer_id: offer["id"]))
         RetailerOffer.create!(retailer_id: retailer["id"], offer_id: offer["id"])
       end
