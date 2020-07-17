@@ -4,8 +4,9 @@
     <Header/>
 
     <main>
+      <input type="text" v-model="search" placeholder="Search for offers.."/>
       <div class="gallery" v-if="gallery">
-        <div class="offer-card" v-for="offer in offers">
+        <div class="offer-card" v-for="offer in searchOffers">
           <div @click="offer.views++, offerShow(offer.id)">
             <div class="image-container">
               <img class="image" :src='offer.image_url'>
@@ -91,6 +92,17 @@
         return month + '/' + day + '/' + year
       }
     },
+
+    computed: {
+      searchOffers() {
+        return this.offers.filter(offer => {
+          return offer.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          offer.description.toLowerCase().includes(this.search.toLowerCase()) ||
+          offer.terms.toLowerCase().includes(this.search.toLowerCase())
+        })
+      }
+    },
+
     components: {
       Header
     }
