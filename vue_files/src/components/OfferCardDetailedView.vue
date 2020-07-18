@@ -13,12 +13,12 @@
           <p><strong>Offer Views: </strong>{{offer.views}}</p>
         </div>
         <div class="retailers">
-          <p v-if="offer.retailers.length"><strong>Retailers: </strong></p>
-          <select v-if="offer.retailers.length">
-            <option v-if="offer.retailers.length" v-for="retailer in offer.retailers">{{retailer.name}}</option>
-          </select>
+          <span><strong>Retailers: </strong></span>
+          <ul v-for="retailer in offer.retailers">
+            <li>{{'- ' + retailer.name}}</li>
+          </ul>
         </div>
-        <button @click="$store.state.gallery = !$store.state.gallery">All Offers</button>
+        <button @click="resetState()">All Offers</button>
       </div>
     </div>
   </div>
@@ -33,6 +33,9 @@
         var month = data.slice(5, 7);
         var day = data.slice(8, 10);
         return month + '/' + day + '/' + year
+      },
+      resetState() {
+        this.$store.state.gallery = !this.$store.state.gallery;
       }
     }
   };
@@ -58,20 +61,23 @@
 
   .offer-card-detailed {
     display: grid;
-    grid-template-columns: 55% 45%;
-    grid-template-rows: 20% 65% 15%;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 15% 60% 10% 15%;
     grid-template-areas:
       "title image"
       "details image"
-      "button retailers";
+      "retailers image"
+      "retailers button";
     background-color: white;
-    width: 75vw;
-    height: 75vh;
+    width: 1150px;
+    height: 500px;
     padding: 0.8rem;
     margin: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 2rem;
     box-shadow: 0 0 50px 15px rgba(0, 0, 0, 0.2);
+    overflow-x: scroll;
+    overflow-y: scroll;
   }
 
   h1 {
@@ -88,16 +94,20 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem 2rem;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.3;
   }
 
   .retailers {
     grid-area: retailers;
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 2rem;
     align-self: center;
-    place-self: center;
+  }
+
+  li {
+    float: left;
+    padding: 4px;
   }
 
   button {
