@@ -38,6 +38,7 @@ describe("SearchBar.vue", () => {
 
   test("search updates with input value", () => {
     const wrapper = mount(SearchBar, { store, localVue });
+    expect(store.state.search).toEqual('')
     wrapper.find('input').setValue('Food')
     expect(store.state.search).toEqual('Food')
   })
