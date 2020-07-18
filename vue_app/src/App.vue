@@ -10,7 +10,7 @@
   }
 </script>
 
-<style lang="scss">
+<style>
 #app {
   font-family: 'museo-sans','Arial';
   color: #303030;
