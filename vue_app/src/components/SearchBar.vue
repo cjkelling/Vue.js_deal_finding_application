@@ -1,6 +1,8 @@
 <template>
-  <p v-if="$store.state.gallery">Search:
-  <input type="text" v-model="$store.state.search" placeholder='Try "coffee" or "Walmart"'/></p>
+  <div>
+    <p v-if="$store.state.gallery">Search:
+    <input type="text" v-model="$store.state.search" placeholder='Try "coffee" or "Walmart"'/></p>
+  </div>
 </template>
 
 <script>
