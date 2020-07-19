@@ -1,6 +1,6 @@
 <template>
   <div class="filterMenu" v-if="$store.state.gallery">
-      <button class="selectBox" @click="createRetailerList(), showCheckboxes()">Filter by Retailers
+      <button @click="createRetailerList(), showCheckboxes()">Filter by Retailers
       </button>
     <div id="checkboxes" v-if="$store.state.showRetailers">
       <label v-for="retailer in $store.state.retailerList" v-bind:key="retailer">
@@ -42,5 +42,25 @@
 </script>
 
 <style scoped>
+  button {
+    grid-area: button;
+    place-self: center;
+    background-color: #0a7986;
+    color: white;
+    width: 200px;
+    font-size: 16px;
+    margin-left: 60px;
+    padding: .7rem;
+    border-style: none;
+    border-radius: 1.5rem;
+    letter-spacing: .15rem;
+  }
+  button:active {
+    border-style: none;
+  }
 
+  #checkboxes {
+    margin: 20px 60px;
+    border: 1 px solid #0a7986;
+  }
 </style>

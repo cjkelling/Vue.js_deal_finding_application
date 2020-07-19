@@ -1,27 +1,7 @@
 <template>
   <div>
-    <div class="gallery" v-if="$store.state.gallery && filterOffers">
+    <div class="gallery" v-if="$store.state.gallery">
       <div class="offer-card" v-for="offer in filterOffers" v-bind:key="offer.id" @click="offer.views++, offerShow(offer.id)">
-        <div class="image-container">
-          <img class="image" :src='offer.image_url'>
-        </div>
-        <div class="description-container">
-          <p class="description">{{offer.name}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="gallery" v-else-if="$store.state.gallery && searchOffers != ''">
-      <div class="offer-card" v-for="offer in searchOffers" v-bind:key="offer.id" @click="offer.views++, offerShow(offer.id)">
-        <div class="image-container">
-          <img class="image" :src='offer.image_url'>
-        </div>
-        <div class="description-container">
-          <p class="description">{{offer.name}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="gallery" v-else-if="$store.state.gallery">
-      <div class="offer-card" v-for="offer in $store.state.offers" v-bind:key="offer.id" @click="offer.views++, offerShow(offer.id)">
         <div class="image-container">
           <img class="image" :src='offer.image_url'>
         </div>
@@ -40,20 +20,22 @@
     name: "OfferCardGalleryView",
 
     computed: {
+      filterOffers() {
+        const searchOffer = this.searchOffers
+        const filteredOffers = searchOffer.filter(offer => {
+          return offer.retailers.some(retailer => this.$store.state.filters.includes(retailer.name))
+        })
+        console.log(searchOffer)
+        return filteredOffers.length > 0 ? filteredOffers : searchOffer
+      },
       searchOffers() {
         return this.$store.state.offers.filter(offer => {
           return offer.name.toLowerCase().includes(this.$store.state.search.toLowerCase()) ||
           offer.description.toLowerCase().includes(this.$store.state.search.toLowerCase()) ||
           offer.terms.toLowerCase().includes(this.$store.state.search.toLowerCase())
         })
-      },
-      filterOffers() {
-        const filteredOffers = this.$store.state.offers.filter(offer => {
-          return offer.retailers.some(retailer => this.$store.state.filters.includes(retailer.name))
-        })
-        return filteredOffers.length > 0 ? filteredOffers : false
       }
-    },
+      },
 
     methods: {
       offerShow(id) {
@@ -73,7 +55,7 @@
           .catch(e => {this.$store.state.errors.push(e)})
       }
     }
-  };
+  }
 </script>
 
 <style scoped>
