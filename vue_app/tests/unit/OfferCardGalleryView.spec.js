@@ -6,7 +6,7 @@ const localVue = createLocalVue()
 
 localVue.use(Vuex)
 
-describe("SearchBar.vue", () => {
+describe("OfferCardGalleryView.vue", () => {
   let state
   let store
 
@@ -17,21 +17,21 @@ describe("SearchBar.vue", () => {
       offerId: null,
       offers: [
         { id: 1284,
-          name: 'Crystal Heavy Liquid',
+          name: 'Heavy',
           description: "3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club",
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
         },
         { id: 1234,
-          name: 'Crystal Medium Liquid',
+          name: 'Medium',
           description: "3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club",
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
         },
         { id: 5678,
-          name: 'Crystal Medium Liquid',
+          name: 'Medium Too',
           description: "3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club",
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
@@ -65,7 +65,7 @@ describe("SearchBar.vue", () => {
     expect(wrapper.findAll('.offer-card').length).toEqual(2)
   })
 
-  test("when an offer card is clicked gallery view is false and offerId is set to clicked object ID", () => {
+  test("when an offer card is clicked, gallery view becomes false and offerId is set to the clicked objects ID", () => {
     let wrapper = mount(OfferCardGalleryView, { store, localVue });
     wrapper.findAll('.offer-card').at(0).trigger('click')
     expect(store.state.gallery).toEqual(false)

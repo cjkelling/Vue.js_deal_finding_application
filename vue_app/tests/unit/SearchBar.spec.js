@@ -9,7 +9,7 @@ localVue.use(Vuex)
 describe("SearchBar.vue", () => {
   let state
   let store
-
+  
   beforeEach(() => {
     state = {
       search: '',
@@ -36,7 +36,7 @@ describe("SearchBar.vue", () => {
     expect(wrapper.find('input').html()).toContain('placeholder=\"Try &quot;coffee&quot; or &quot;Walmart&quot')
   })
 
-  test("search updates with input value", () => {
+  test("the value of 'search' updates with input value", () => {
     const wrapper = mount(SearchBar, { store, localVue });
     expect(store.state.search).toEqual('')
     wrapper.find('input').setValue('Food')
