@@ -48,7 +48,6 @@
         })
       },
       filterOffers() {
-        console.log('hey')
         const filteredOffers = this.$store.state.offers.filter(offer => {
           return offer.retailers.some(retailer => this.$store.state.filters.includes(retailer.name))
         })

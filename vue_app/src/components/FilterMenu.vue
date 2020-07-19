@@ -1,9 +1,9 @@
 <template>
-  <div class="multiselect" v-if="$store.state.gallery">
+  <div class="filterMenu" v-if="$store.state.gallery">
       <button class="selectBox" @click="createRetailerList(), showCheckboxes()">Filter by Retailers
       </button>
     <div id="checkboxes" v-if="$store.state.showRetailers">
-      <label v-for="retailer in $store.state.retailerList" v-bind:key="retailer.id">
+      <label v-for="retailer in $store.state.retailerList" v-bind:key="retailer">
         <input type="checkbox" @change="addOrRemoveFilter(retailer, $event)">{{retailer}}</label>
     </div>
   </div>

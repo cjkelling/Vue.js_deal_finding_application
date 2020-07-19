@@ -1,23 +1,22 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuex from 'vuex';
-import OfferCardDetailedView from '@/components/OfferCardDetailedView.vue';
+import FilterMenu from '@/components/FilterMenu.vue';
 
 const localVue = createLocalVue()
 
 localVue.use(Vuex)
 
-describe("OfferCardDetailedView.vue", () => {
+describe("FilterMenu.vue", () => {
   let state
   let store
 
   beforeEach(() => {
     state = {
-      gallery: false,
-      offerId: 1284,
       endpoint: 'http://localhost:3000/api/v1/offers',
-      retailerList: [],
-      search: '',
-      showRetailers: false,
+      errors: [],
+      filters: [],
+      gallery: true,
+      offerId: null,
       offers: [
         { id: 1284,
           name: 'Heavy',
@@ -25,7 +24,7 @@ describe("OfferCardDetailedView.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
-          retailers: ['Walmart']
+          retailers: [{name: 'Walmart'}]
         },
         { id: 1234,
           name: 'Medium',
@@ -33,7 +32,7 @@ describe("OfferCardDetailedView.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
-          retailers: ['Walmart']
+          retailers: [{name: 'Walmart'}]
         },
         { id: 5678,
           name: 'Medium Too',
@@ -41,32 +40,35 @@ describe("OfferCardDetailedView.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
-          retailers: ['Walmart']
+          retailers: [{name: 'Publix'}]
         }
-      ]
+      ],
+      retailerList: [],
+      search: '',
+      showRetailers: false
     }
     store = new Vuex.Store({
       state
     })
   })
 
-  test("it does not show detailed view when gallery view is set to true", () => {
-    store.state.gallery = true;
-    const wrapper = mount(OfferCardDetailedView, { store, localVue });
-    expect(wrapper.findAll('.offer-card-detailed').length).toEqual(0)
+  test("it shows on the page if in gallery view", () => {
+    const wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('.filterMenu').length).toEqual(1)
   })
 
-  test("it only shows 1 detailed view card. The card with ID that is stored in offerId from being click", () => {
-    let wrapper = mount(OfferCardDetailedView, { store, localVue });
-    expect(wrapper.findAll('.offer-card-detailed').length).toEqual(1)
-    expect(wrapper.find('.offer-card-detailed').html()).toContain('Heavy')
+  test("it does not show on the page if in detailed view", () => {
+    store.state.gallery = false;
+    const wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('.filterMenu').length).toEqual(0)
   })
 
-  test("when the button is clicked the gallery view is true and detaild card is not longer rendered", () => {
-    let wrapper = mount(OfferCardDetailedView, { store, localVue });
+  test("checkboxes show if 'showRetailers' button is pressed", () => {
+    let wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('input').length).toEqual(0)
     wrapper.find('button').trigger('click')
-    expect(store.state.gallery).toEqual(true)
-    wrapper = mount(OfferCardDetailedView, { store, localVue });
-    expect(wrapper.findAll('.offer-card-detailed').length).toEqual(0)
+    expect(store.state.showRetailers).toEqual(true)
+    wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('label').length).toEqual(2)
   })
-});
+})
