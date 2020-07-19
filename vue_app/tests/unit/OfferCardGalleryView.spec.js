@@ -12,9 +12,14 @@ describe("OfferCardGalleryView.vue", () => {
 
   beforeEach(() => {
     state = {
+      endpoint: 'http://localhost:3000/api/v1/offers',
+      errors: [],
+      filters: [],
       gallery: true,
-      search: '',
       offerId: null,
+      retailerList: [],
+      search: '',
+      showRetailers: false,
       offers: [
         { id: 1284,
           name: 'Heavy',
@@ -22,6 +27,7 @@ describe("OfferCardGalleryView.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
+          retailers: [{name: 'Walmart'}]
         },
         { id: 1234,
           name: 'Medium',
@@ -29,6 +35,7 @@ describe("OfferCardGalleryView.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
+          retailers: [{name: 'Target'}]
         },
         { id: 5678,
           name: 'Medium Too',
@@ -36,6 +43,7 @@ describe("OfferCardGalleryView.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
+          retailers: [{name: 'Target'}]
         }
       ]
     }
@@ -55,7 +63,7 @@ describe("OfferCardGalleryView.vue", () => {
     expect(wrapper.findAll('.offer-card').length).toEqual(0)
   })
 
-  test("it only shows offers that match the search bar paramiters", () => {
+  test("it only shows offers that match the search bar parameters", () => {
     store.state.search = 'Heavy';
     let wrapper = mount(OfferCardGalleryView, { store, localVue });
     expect(wrapper.findAll('.offer-card').length).toEqual(1)
@@ -72,5 +80,15 @@ describe("OfferCardGalleryView.vue", () => {
     expect(store.state.offerId).toEqual(1284)
     wrapper = mount(OfferCardGalleryView, { store, localVue });
     expect(wrapper.findAll('.offer-card').length).toEqual(0)
+  })
+
+  test("it only shows offers that match the retailer filter parameters", () => {
+    store.state.filters = ['Walmart']
+    let wrapper = mount(OfferCardGalleryView, { store, localVue });
+    expect(wrapper.findAll('.offer-card').length).toEqual(1)
+
+    store.state.filters = ['Target']
+    wrapper = mount(OfferCardGalleryView, { store, localVue });
+    expect(wrapper.findAll('.offer-card').length).toEqual(2)
   })
 });

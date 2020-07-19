@@ -1,14 +1,12 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuex from 'vuex';
-import ApiService from '@/components/ApiService.vue';
+import FilterMenu from '@/components/FilterMenu.vue';
 
 const localVue = createLocalVue()
-const axios = require('axios');
 
-jest.mock('axios');
 localVue.use(Vuex)
 
-describe("ApiService.vue", () => {
+describe("FilterMenu.vue", () => {
   let state
   let store
 
@@ -16,25 +14,17 @@ describe("ApiService.vue", () => {
     state = {
       endpoint: 'http://localhost:3000/api/v1/offers',
       errors: [],
-      offers: []
-    }
-    store = new Vuex.Store({
-      state
-    })
-  })
-
-  it('returns the offer data', async () => {
-    const wrapper = mount(ApiService, { store, localVue });
-    expect(store.state.offers.length).toEqual(0)
-
-    apiCall = axios.get.mockResolvedValue({
-      data: [
+      filters: [],
+      gallery: true,
+      offerId: null,
+      offers: [
         { id: 1284,
           name: 'Heavy',
           description: "3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club",
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
+          retailers: [{name: 'Walmart'}]
         },
         { id: 1234,
           name: 'Medium',
@@ -42,6 +32,7 @@ describe("ApiService.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
+          retailers: [{name: 'Walmart'}]
         },
         { id: 5678,
           name: 'Medium Too',
@@ -49,12 +40,35 @@ describe("ApiService.vue", () => {
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
           image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
+          retailers: [{name: 'Publix'}]
         }
-      ]
-    });
+      ],
+      retailerList: [],
+      search: '',
+      showRetailers: false
+    }
+    store = new Vuex.Store({
+      state
+    })
+  })
 
-    await apiCall;
+  test("it shows on the page if in gallery view", () => {
+    const wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('.filterMenu').length).toEqual(1)
+  })
 
-    expect(store.state.offers.length).toEqual(3)
+  test("it does not show on the page if in detailed view", () => {
+    store.state.gallery = false;
+    const wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('.filterMenu').length).toEqual(0)
+  })
+
+  test("checkboxes show if 'showRetailers' button is pressed", () => {
+    let wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('input').length).toEqual(0)
+    wrapper.find('button').trigger('click')
+    expect(store.state.showRetailers).toEqual(true)
+    wrapper = mount(FilterMenu, { store, localVue });
+    expect(wrapper.findAll('label').length).toEqual(2)
   })
 })

@@ -1,11 +1,33 @@
 <template>
-  <div class="gallery" v-if="$store.state.gallery">
-    <div class="offer-card" v-for="offer in searchOffers" @click="offer.views++, offerShow(offer.id)">
-      <div class="image-container">
-        <img class="image" :src='offer.image_url'>
+  <div>
+    <div class="gallery" v-if="$store.state.gallery && filterOffers">
+      <div class="offer-card" v-for="offer in filterOffers" v-bind:key="offer.id" @click="offer.views++, offerShow(offer.id)">
+        <div class="image-container">
+          <img class="image" :src='offer.image_url'>
+        </div>
+        <div class="description-container">
+          <p class="description">{{offer.name}}</p>
+        </div>
       </div>
-      <div class="description-container">
-        <p class="description">{{offer.name}}</p>
+    </div>
+    <div class="gallery" v-else-if="$store.state.gallery && searchOffers != ''">
+      <div class="offer-card" v-for="offer in searchOffers" v-bind:key="offer.id" @click="offer.views++, offerShow(offer.id)">
+        <div class="image-container">
+          <img class="image" :src='offer.image_url'>
+        </div>
+        <div class="description-container">
+          <p class="description">{{offer.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="gallery" v-else-if="$store.state.gallery">
+      <div class="offer-card" v-for="offer in $store.state.offers" v-bind:key="offer.id" @click="offer.views++, offerShow(offer.id)">
+        <div class="image-container">
+          <img class="image" :src='offer.image_url'>
+        </div>
+        <div class="description-container">
+          <p class="description">{{offer.name}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -16,6 +38,7 @@
 
   export default {
     name: "OfferCardGalleryView",
+
     computed: {
       searchOffers() {
         return this.$store.state.offers.filter(offer => {
@@ -23,8 +46,15 @@
           offer.description.toLowerCase().includes(this.$store.state.search.toLowerCase()) ||
           offer.terms.toLowerCase().includes(this.$store.state.search.toLowerCase())
         })
+      },
+      filterOffers() {
+        const filteredOffers = this.$store.state.offers.filter(offer => {
+          return offer.retailers.some(retailer => this.$store.state.filters.includes(retailer.name))
+        })
+        return filteredOffers.length > 0 ? filteredOffers : false
       }
     },
+
     methods: {
       offerShow(id) {
         this.$store.state.gallery = !this.$store.state.gallery,
@@ -39,7 +69,7 @@
             "Access-Control-Allow-Origin": "*"
           }
         })
-          .then(response => {})
+          .then(response => {response})
           .catch(e => {this.$store.state.errors.push(e)})
       }
     }

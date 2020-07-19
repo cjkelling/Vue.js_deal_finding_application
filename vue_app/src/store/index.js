@@ -5,11 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    offers: [],
+    endpoint: 'http://localhost:3000/api/v1/offers',
     errors: [],
+    filters: [],
     gallery: true,
     offerId: null,
+    offers: [],
+    retailerList: [],
     search: '',
-    endpoint: 'http://localhost:3000/api/v1/offers'
+    showRetailers: false
   }
 })
