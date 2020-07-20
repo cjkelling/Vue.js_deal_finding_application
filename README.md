@@ -11,7 +11,7 @@ manually reloaded.
 The back-end API was built using Rails(5.2.2), Ruby(2.5.3), and it utilizes a
 sqlite3 database. The API has two endpoints. A GET request to ‘/api/v1/offers’
 will return JSON data of all offers and their associated retailers. A PATCH
-request to ‘api/v1/offers/:id’ will update the offers instance associated with
+request to ‘api/v1/offers/:id’ will update the offer's record associated with
 the id given in the parameters to show the offer has been viewed. This endpoint
 is used to keep a count of each time the offer is viewed on the front-end. The
 API is fully tested using RSpec.
@@ -55,9 +55,9 @@ rake db:seed
 ```
 
 The above instructions will set up the Ruby on Rails back-end API and seed your
-sqlite3 database. To set up the front-end you will need to install Vue.js To get
-Vue you will need to install Node.js and npm, which can both be downloaded at
-https://www.npmjs.com/get-npm. Once npm is ready:
+sqlite3 database. To set up the front-end you will need to install Vue.js. To
+get Vue you will need to install Node.js and npm, which can both be downloaded
+at https://www.npmjs.com/get-npm. Once npm is ready:
 
 ```
 npm install -g @vue/cli
@@ -68,11 +68,13 @@ This will give you access to Vue commands and enable you to run the Vue server.
 When first opening the application you will be in the Rails API directory. To
 start the server run ‘rails s’ in your terminal. This Rails server must be
 running before the Vue application is started in order for the Vue application
-to work. Once the Rails application is going, open a second ternimal and
+to work. Once the Rails server is running, open a second terminal and
 'cd vue_app'. This will move you into the Vue application. Here you must run
 'npm run serve' to start the Vue server. If successful, the terminal will tell
-you that your Vue application can be accessed at http://localhost:8080. This
-will be the only route needed to view and interact with the application.
+you that your Vue application can be accessed at http://localhost:8080/. This
+will be the only route needed to view and interact with the application. My time
+working with this application utilized Chrome, but I did not test other browsers
+to verify compatibility.
 
 ### Testing:
 While in the Rails API directory, run ‘rspec’ to run the full back-end RSpec
@@ -81,25 +83,26 @@ test suite. To run the front-end tests, move to the Vue directory and run
 
 ### Estimated Time to Complete Project
 For this project I had to use Ruby on Rails for my back-end, but was allowed to
-use any front-end JavaScript framework that I wanted. Knowing that the company
-uses Vue.js, I felt it was best to use Vue for this assignment. I had not
-used Vue prior to this assignment, so I knew that much of the beginning days
-would be spent learning that framework. My initial thought was to spend a day
-setting up the back-end, 2 days learning Vue, and 2 to 3 days writing the code
-for the front-end. This timeline would take me about a week to complete, so my
-goal was to have this project finished and turned in exactly one week after
-receiving it.
+use any front-end JavaScript framework. Knowing that the company uses Vue.js, I
+felt it was best to use Vue for this assignment. I had not used Vue prior to
+this assignment, so I knew that much of the beginning days would be spent
+learning that framework. My initial thought was to spend a day setting up the
+back-end, 2 days learning Vue, and 2 to 3 days writing the code for the
+front-end. This timeline would take me about a week to complete, so my goal was
+to have this project finished and turned in exactly one week after receiving it.
 
 ### Problem Areas
-There are two options for installing the Vue-CLI using npm.
-'npm install -g vue-cli', which supports the CLI version 2.9, and
-'npm install -g @vue/cli', which installs CLI version 4.6. I felt that the newer
-version of the CLI would be better, but I was also finding less documentation on
-it. As a new Vue user, I wanted the version with the better documentation. This
-caused unforeseen issues for me, as Jest, my testing framwork, is very limited
-with the older version of the CLI. This caused many hours of headache as I tried
-to figure out the compatibility issues and it ultimately made me switch to the
-newer 4.9 version of the CLI many days after I started the project.
+There are two options for installing the Vue-CLI using npm:
+  - 'npm install -g vue-cli', which supports the CLI version 2.9
+  - 'npm install -g @vue/cli', which installs CLI version 4.6
+I felt that the newer version of the CLI would be better, but I was also finding
+less documentation on it. As a new Vue user, I chose version 2.9 because it had
+better documentation. This caused unforeseen issues for me, as I was having
+difficulties getting Jest to work properly. This caused many hours of headache
+as I tried to figure out the compatibility issues and it ultimately made me
+switch to the newer 4.9 version of the CLI many days after I started the
+project. Upgrading the CLI to version 4.6 ultimately fixed all compatibility
+problems I was having.
 
 ### My Process
 Upon receiving this project, my first step was to read the ReadMe document.
@@ -125,15 +128,15 @@ After a day of Vue video tutorials I felt comfortable starting my front-end
 project. Vue uses components and the idea was similar to the concept of modules
 that I was used to in Rails. Each module uses a template, script,
 styling format. I got lost a few times and spent another day on video tutorials
-but I was able to get on the right track and I was able to gain a firmer
-understanding of the functionality that Vue gives me as a framework.
+but I was ultimately able to gain a firmer understanding of the functionality
+that Vue gives me as a framework.
 
 ### Future Iterations
 This project is still at a very early stage. Additional features include having
 user login functionality and user specific abilities. A user should be able to
-save the offers they want. There could be a section for frequently used offers
-that they want immediate access to, and another section that shows they offers
-they have accepted but may not want to favorite.
+save the offers they want to use. There could be a section for frequently used
+offers that they want immediate access to and another section that shows the
+offers they have accepted but may not want to use repeatedly.
 
 ### Final Thoughts
 Ultimately, the Vue features I was able to incorporate in this project include
