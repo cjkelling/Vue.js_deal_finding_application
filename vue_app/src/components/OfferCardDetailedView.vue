@@ -1,6 +1,6 @@
 <template>
   <div v-if="!$store.state.gallery">
-    <div class="offer-card-detailed-container" v-for="offer in $store.state.offers" v-if="offer.id === $store.state.offerId">
+    <div class="offer-card-detailed-container" v-for="offer in $store.state.offers.filter(offer => offer.id === $store.state.offerId)" v-bind:key="offer.id">
       <div class="offer-card-detailed">
         <h1>{{offer.name}}</h1>
         <div class="image-container-detailed">
@@ -8,14 +8,14 @@
         </div>
         <div class="details">
           <p><strong>Description: </strong>{{offer.description}}</p>
-          <p><strong>Terms: </strong>{{offer.terms}}</p>
+          <p class="terms"><strong>Terms: </strong>{{offer.terms}}</p>
           <p><strong>Expires: </strong>{{formatDate(offer.expiration)}}</p>
           <p><strong>Offer Views: </strong>{{offer.views}}</p>
         </div>
         <div class="retailers">
           <span><strong>Retailers: </strong></span>
-          <ul v-for="retailer in offer.retailers">
-            <li>{{'- ' + retailer.name}}</li>
+          <ul>
+            <li v-for="retailer in offer.retailers" v-bind:key="retailer.id">{{'- ' + retailer.name}}</li>
           </ul>
         </div>
         <button @click="resetState()">All Offers</button>
@@ -98,11 +98,18 @@
     line-height: 1.3;
   }
 
+  .terms {
+    white-space: normal;
+    overflow: scroll;
+  }
+
   .retailers {
     grid-area: retailers;
     font-size: 18px;
     padding-left: 2rem;
     align-self: center;
+    white-space: normal;
+    overflow: scroll;
   }
 
   li {
@@ -118,9 +125,17 @@
     width: 35%;
     font-size: 16px;
     padding: .7rem;
-    border-style: none;
+    border: none;
+    outline: none;
     border-radius: 1.5rem;
     letter-spacing: .15rem;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    transform: scale(1.01);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
   }
 
   .image-container-detailed {
