@@ -144,4 +144,4 @@ proud of the progress I was able to make for this project. Being able to take on
 a project with no prior knowledge was challenging and fun. There is still a lot
 of work that could be done on this project to make it a fully operational
 application, but for the given time-frame and my starting knowledge, I am
-satisfied with the final product. 
+satisfied with the final product.
