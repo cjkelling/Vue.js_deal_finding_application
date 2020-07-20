@@ -125,9 +125,17 @@
     width: 35%;
     font-size: 16px;
     padding: .7rem;
-    border-style: none;
+    border: none;
+    outline: none;
     border-radius: 1.5rem;
     letter-spacing: .15rem;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    transform: scale(1.01);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
   }
 
   .image-container-detailed {

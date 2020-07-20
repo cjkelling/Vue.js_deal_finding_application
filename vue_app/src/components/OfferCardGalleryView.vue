@@ -25,7 +25,6 @@
         const filteredOffers = searchOffer.filter(offer => {
           return offer.retailers.some(retailer => this.$store.state.filters.includes(retailer.name))
         })
-        console.log(searchOffer)
         return filteredOffers.length > 0 ? filteredOffers : searchOffer
       },
       searchOffers() {
@@ -35,13 +34,14 @@
           offer.terms.toLowerCase().includes(this.$store.state.search.toLowerCase())
         })
       }
-      },
+    },
 
     methods: {
       offerShow(id) {
         this.$store.state.gallery = !this.$store.state.gallery,
         this.$store.state.offerId = id,
         this.$store.state.search = '',
+        this.$store.state.filters = [],
         this.registerView(id)
       },
       registerView(id) {
@@ -86,7 +86,7 @@
 
   .offer-card:hover {
     transform: scale(1.01);
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
   }
 
   .image-container {
