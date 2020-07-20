@@ -42,6 +42,7 @@
         this.$store.state.offerId = id,
         this.$store.state.search = '',
         this.$store.state.filters = [],
+        this.$store.state.showRetailers = false,
         this.registerView(id)
       },
       registerView(id) {
