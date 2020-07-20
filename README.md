@@ -95,6 +95,7 @@ to have this project finished and turned in exactly one week after receiving it.
 There are two options for installing the Vue-CLI using npm:
   - 'npm install -g vue-cli', which supports the CLI version 2.9
   - 'npm install -g @vue/cli', which installs CLI version 4.6
+
 I felt that the newer version of the CLI would be better, but I was also finding
 less documentation on it. As a new Vue user, I chose version 2.9 because it had
 better documentation. This caused unforeseen issues for me, as I was having
