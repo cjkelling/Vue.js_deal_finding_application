@@ -83,7 +83,6 @@ test suite. To run the front-end tests, move to the Vue directory and run
 
 ### Estimated Time to Complete Project
 For this project I had to use Ruby on Rails for my back-end, but was allowed to
-<<<<<<< HEAD
 use any front-end JavaScript framework. Knowing that the company uses Vue.js, I
 felt it was best to use Vue for this assignment. I had not used Vue prior to
 this assignment, so I knew that much of the beginning days would be spent
@@ -91,16 +90,6 @@ learning that framework. My initial thought was to spend a day setting up the
 back-end, 2 days learning Vue, and 2 to 3 days writing the code for the
 front-end. This timeline would take me about a week to complete, so my goal was
 to have this project finished and turned in exactly one week after receiving it.
-=======
-use any front-end JavaScript framework. Knowing that the company
-uses Vue.js, I felt it was best to use Vue for this assignment. I had not
-used Vue prior to this assignment, so I knew that much of the beginning days
-would be spent learning that framework. My initial thought was to spend a day
-setting up the back-end, 2 days learning Vue, and 2 to 3 days writing the code
-for the front-end. This timeline would take me about a week to complete, so my
-goal was to have this project finished and turned in exactly one week after
-receiving it.
->>>>>>> 441a9b9a018277ccbd195a656862575f320e7a40
 
 ### Problem Areas
 There are two options for installing the Vue-CLI using npm:
