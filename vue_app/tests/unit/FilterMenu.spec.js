@@ -71,4 +71,12 @@ describe("FilterMenu.vue", () => {
     wrapper = mount(FilterMenu, { store, localVue });
     expect(wrapper.findAll('label').length).toEqual(2)
   })
+
+  test("clicking a checkbox puts the retailer name into the filters array", () => {
+    let wrapper = mount(FilterMenu, { store, localVue });
+    wrapper.find('button').trigger('click')
+    wrapper = mount(FilterMenu, { store, localVue });
+    wrapper.findAll('label').at(0).trigger('click')
+    expect(store.state.filters).toContain('Walmart')
+  })
 })
