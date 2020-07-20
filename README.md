@@ -101,7 +101,7 @@ less documentation on it. As a new Vue user, I chose version 2.9 because it had
 better documentation. This caused unforeseen issues for me, as I was having
 difficulties getting Jest to work properly. This caused many hours of headache
 as I tried to figure out the compatibility issues and it ultimately made me
-switch to the newer 4.9 version of the CLI many days after I started the
+switch to the newer 4.6 version of the CLI many days after I started the
 project. Upgrading the CLI to version 4.6 ultimately fixed all compatibility
 problems I was having.
 
