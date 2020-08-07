@@ -1,16 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import apiCalls from './modules/apiCalls';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    apiCalls
+  },
   state: {
-    endpoint: 'http://localhost:3000/api/v1/offers',
     errors: [],
     filters: [],
     gallery: true,
     offerId: null,
-    offers: [],
     retailerList: [],
     search: '',
     showRetailers: false

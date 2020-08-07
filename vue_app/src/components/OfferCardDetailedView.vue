@@ -1,6 +1,6 @@
 <template>
   <div v-if="!$store.state.gallery">
-    <div class="offer-card-detailed-container" v-for="offer in $store.state.offers.filter(offer => offer.id === $store.state.offerId)" v-bind:key="offer.id">
+    <div class="offer-card-detailed-container" v-for="offer in allOffers(offer => offer.id === $store.state.offerId)" :key="offer.id">
       <div class="offer-card-detailed">
         <h1>{{offer.name}}</h1>
         <div class="image-container-detailed">
@@ -25,9 +25,12 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name: "OfferCardDetailedView",
     methods: {
+      ...mapGetters(['allOffers']),
       formatDate(data) {
         var year = data.slice(0, 4);
         var month = data.slice(5, 7);

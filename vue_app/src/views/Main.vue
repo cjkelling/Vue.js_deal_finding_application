@@ -1,29 +1,26 @@
 <template>
   <div id="app">
-    <ApiService/>
-    <Header/>
+    <ApiHandler/>
     <SearchBar/>
     <FilterMenu/>
-    <OfferCardGalleryView/>
+    <GalleryView/>
     <OfferCardDetailedView/>
   </div>
 </template>
 
 <script>
-  import ApiService from '../components/ApiService.vue';
-  import Header from '../components/Header.vue';
+  import ApiHandler from '../components/ApiHandler.vue';
   import SearchBar from '../components/SearchBar.vue';
   import FilterMenu from '../components/FilterMenu.vue';
-  import OfferCardGalleryView from '../components/OfferCardGalleryView.vue';
+  import GalleryView from '../components/GalleryView.vue';
   import OfferCardDetailedView from '../components/OfferCardDetailedView.vue';
 
   export default{
     components: {
-      ApiService,
-      Header,
+      ApiHandler,
       SearchBar,
       FilterMenu,
-      OfferCardGalleryView,
+      GalleryView,
       OfferCardDetailedView
     }
   }
