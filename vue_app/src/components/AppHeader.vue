@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: "IbottaLogo_Primary_PinkHeader"
+    name: "AppHeader"
   };
 </script>
 

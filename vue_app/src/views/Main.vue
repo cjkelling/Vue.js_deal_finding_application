@@ -4,7 +4,7 @@
     <SearchBar/>
     <FilterMenu/>
     <GalleryView/>
-    <OfferCardDetailedView/>
+    <DetailedView/>
   </div>
 </template>
 
@@ -13,7 +13,7 @@
   import SearchBar from '../components/SearchBar.vue';
   import FilterMenu from '../components/FilterMenu.vue';
   import GalleryView from '../components/GalleryView.vue';
-  import OfferCardDetailedView from '../components/OfferCardDetailedView.vue';
+  import DetailedView from '../components/DetailedView.vue';
 
   export default{
     components: {
@@ -21,7 +21,7 @@
       SearchBar,
       FilterMenu,
       GalleryView,
-      OfferCardDetailedView
+      DetailedView
     }
   }
 </script>

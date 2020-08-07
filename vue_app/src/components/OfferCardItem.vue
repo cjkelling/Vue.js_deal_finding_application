@@ -1,5 +1,5 @@
 <template>
-  <li class="offer-card" @click="offer.views++, offerShow(offer.id)">
+  <li class="offer-card" @click="offer.views++, showOffer(offer.id)">
     <div class="image-container">
       <img class="image" :src='offer.image_url'>
     </div>
@@ -10,18 +10,20 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
   import services from '../services/api';
 
   export default {
     name: 'OfferCardItem',
     props: ['offer'],
     methods: {
-      offerShow(id) {
-        this.$store.state.gallery = !this.$store.state.gallery,
-        this.$store.state.offerId = id,
-        this.$store.state.search = '',
-        this.$store.state.filters = [],
-        this.$store.state.showRetailers = false,
+      ...mapActions(['updateGallery', 'updateOfferId', 'updateSearch', 'updateShowRetailers', 'resetFilter']),
+      showOffer(id) {
+        this.updateGallery(false),
+        this.updateOfferId(id),
+        this.updateSearch(''),
+        this.updateShowRetailers(false),
+        this.resetFilter(),
         services.registerView(id)
       }
     }

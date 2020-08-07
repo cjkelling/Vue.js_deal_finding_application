@@ -1,5 +1,5 @@
 <template>
-  <ul class="gallery" v-if="$store.state.gallery">
+  <ul class="gallery" v-if="getGalleryView">
     <OfferCardItem v-for="offer in filterOffers" :offer="offer" :key="offer.id">
     </OfferCardItem>
   </ul>
@@ -15,19 +15,19 @@
       OfferCardItem
     },
     computed: {
-      ...mapGetters(['allOffers']),
+      ...mapGetters(['allOffers', 'getGalleryView', 'getSearch', 'getFilters']),
       filterOffers() {
         const searchOffer = this.searchOffers
         const filteredOffers = searchOffer.filter(offer => {
-          return offer.retailers.some(retailer => this.$store.state.filters.includes(retailer.name))
+          return offer.retailers.some(retailer => this.getFilters.includes(retailer.name))
         })
         return filteredOffers.length > 0 ? filteredOffers : searchOffer
       },
       searchOffers() {
         return this.allOffers.filter(offer => {
-          return offer.name.toLowerCase().includes(this.$store.state.search.toLowerCase()) ||
-          offer.description.toLowerCase().includes(this.$store.state.search.toLowerCase()) ||
-          offer.terms.toLowerCase().includes(this.$store.state.search.toLowerCase())
+          return offer.name.toLowerCase().includes(this.getSearch.toLowerCase()) ||
+          offer.description.toLowerCase().includes(this.getSearch.toLowerCase()) ||
+          offer.terms.toLowerCase().includes(this.getSearch.toLowerCase())
         })
       }
     }
