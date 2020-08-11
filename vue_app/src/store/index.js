@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import apiCalls from './modules/apiCalls';
-import cardViews from './modules/cardViews';
+import offerCardDetailed from './modules/offerCardDetailed';
 import searchFilter from './modules/searchFilter';
 
 Vue.use(Vuex)
@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     apiCalls,
-    cardViews,
+    offerCardDetailed,
     searchFilter
   },
   state: {

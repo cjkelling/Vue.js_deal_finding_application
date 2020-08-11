@@ -1,5 +1,5 @@
 <template>
-  <div class="filterMenu" v-if="getGalleryView">
+  <div class="filterMenu">
       <button @click="updateShowRetailers">Filter by Retailers
       </button>
     <div id="checkboxes" v-if="getShowRetailers">
@@ -14,7 +14,7 @@
 
   export default {
     name: "FilterMenu",
-    computed: mapGetters(['getGalleryView', 'getShowRetailers', 'allRetailers']),
+    computed: mapGetters(['getShowRetailers', 'allRetailers']),
     methods: {
       ...mapActions(['addToFilter', 'removeFromFilter', 'updateShowRetailers']),
       addOrRemoveFilter(retailer, event) {

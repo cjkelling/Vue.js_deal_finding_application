@@ -25,6 +25,9 @@ const actions = {
   },
   updateShowRetailers({ commit }) {
     commit('setShowRetailers');
+  },
+  resetShowRetailers({ commit }) {
+    commit('resetShowRetailers');
   }
 };
 
@@ -43,6 +46,9 @@ const mutations = {
   },
   setShowRetailers: (state) => {
     state.showRetailers = !state.showRetailers;
+  },
+  resetShowRetailers: (state) => {
+    state.showRetailers = false;
   }
 };
 

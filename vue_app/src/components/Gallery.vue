@@ -1,5 +1,5 @@
 <template>
-  <ul class="gallery" v-if="getGalleryView">
+  <ul class="gallery">
     <OfferCardItem v-for="offer in filterOffers" :offer="offer" :key="offer.id">
     </OfferCardItem>
   </ul>
@@ -10,12 +10,12 @@
   import OfferCardItem from './OfferCardItem';
 
   export default {
-    name: 'GalleryView',
+    name: 'Gallery',
     components: {
       OfferCardItem
     },
     computed: {
-      ...mapGetters(['allOffers', 'getGalleryView', 'getSearch', 'getFilters']),
+      ...mapGetters(['allOffers', 'getSearch', 'getFilters']),
       filterOffers() {
         const searchOffer = this.searchOffers
         const filteredOffers = searchOffer.filter(offer => {

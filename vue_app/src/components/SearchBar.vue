@@ -1,16 +1,15 @@
 <template>
   <div>
-    <p v-if="getGalleryView">Search:
+    <p>Search:
     <input type="text" @input="onInput" placeholder='Try "coffee" or "Walmart"'/></p>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions } from 'vuex';
 
   export default {
     name: "SearchBar",
-    computed: mapGetters(['getGalleryView']),
     methods: {
       ...mapActions(['updateSearch']),
       onInput(event) {

@@ -12,19 +12,20 @@
 <script>
   import { mapActions } from 'vuex';
   import services from '../services/api';
+  import router from "../router/index";
 
   export default {
     name: 'OfferCardItem',
     props: ['offer'],
     methods: {
-      ...mapActions(['updateGallery', 'updateOfferId', 'updateSearch', 'updateShowRetailers', 'resetFilter']),
+      ...mapActions(['updateOfferId', 'updateSearch', 'updateShowRetailers', 'resetFilter', 'resetShowRetailers']),
       showOffer(id) {
-        this.updateGallery(false),
         this.updateOfferId(id),
         this.updateSearch(''),
-        this.updateShowRetailers(false),
         this.resetFilter(),
-        services.registerView(id)
+        this.resetShowRetailers(),
+        services.registerView(id),
+        router.push(`/offer/${id}`);
       }
     }
   }
