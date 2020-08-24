@@ -26,8 +26,6 @@ tested using Jest.
 This project was begun on Monday, July 13th, and finished on Monday, July 20th.
 
 ### Setup:
-As per instructions from the company, initial installation is as follows:
-
 1. Ensure XCode and Command Line Tools are installed
 2. Install [brew](http://brew.sh/)
 3. Install the following brew packages
