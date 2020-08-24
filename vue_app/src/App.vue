@@ -1,13 +1,22 @@
 <template>
-  <div id="app">
+  <div>
+    <AppHeader/>
+    <ApiHandler/>
     <router-view/>
   </div>
 </template>
 
 <script>
+  import AppHeader from './components/AppHeader';
+  import ApiHandler from './components/ApiHandler';
+
   export default{
-    name: 'App'
-  }
+    name: 'App',
+    components: {
+      AppHeader,
+      ApiHandler
+    }
+  };
 </script>
 
 <style>

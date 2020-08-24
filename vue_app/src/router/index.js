@@ -1,15 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Main from '../views/Main.vue'
+import GalleryView from '../views/GalleryView';
+import DetailedView from '../components/DetailedView';
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Main",
-    component: Main
-  }
+  { path: "/gallery", component: GalleryView },
+  { path: "/offer/:id", component: DetailedView }
 ];
 
 const router = new VueRouter({

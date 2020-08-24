@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!$store.state.gallery">
-    <div class="offer-card-detailed-container" v-for="offer in $store.state.offers.filter(offer => offer.id === $store.state.offerId)" v-bind:key="offer.id">
+  <div>
+    <div class="offer-card-detailed-container" v-for="offer in allOffers.filter(offer => offer.id === this.getOfferId )" :key="offer.id">
       <div class="offer-card-detailed">
         <h1>{{offer.name}}</h1>
         <div class="image-container-detailed">
@@ -18,15 +18,19 @@
             <li v-for="retailer in offer.retailers" v-bind:key="retailer.id">{{'- ' + retailer.name}}</li>
           </ul>
         </div>
-        <button @click="resetState()">All Offers</button>
+        <button @click="galleryView()">All Offers</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+  import router from "../router/index";
+
   export default {
-    name: "OfferCardDetailedView",
+    name: "DetailedView",
+    computed: mapGetters(['allOffers', 'getOfferId']),
     methods: {
       formatDate(data) {
         var year = data.slice(0, 4);
@@ -34,8 +38,8 @@
         var day = data.slice(8, 10);
         return month + '/' + day + '/' + year
       },
-      resetState() {
-        this.$store.state.gallery = !this.$store.state.gallery;
+      galleryView() {
+        router.push(`/gallery`);
       }
     }
   };

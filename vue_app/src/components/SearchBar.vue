@@ -1,13 +1,21 @@
 <template>
   <div>
-    <p v-if="$store.state.gallery">Search:
-    <input type="text" v-model="$store.state.search" placeholder='Try "coffee" or "Walmart"'/></p>
+    <p>Search:
+    <input type="text" @input="onInput" placeholder='Try "coffee" or "Walmart"'/></p>
   </div>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
-    name: "SearchBar"
+    name: "SearchBar",
+    methods: {
+      ...mapActions(['updateSearch']),
+      onInput(event) {
+        this.updateSearch(event.target.value);
+      }
+    }
   };
 </script>
 
