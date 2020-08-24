@@ -80,13 +80,11 @@ test suite. To run the front-end tests, move to the Vue directory and run
 ‘npm run test:unit’ to run the full front-end Jest test suite.
 
 ### Estimated Time to Complete Project
-For this project I had to use Ruby on Rails for my back-end, but was allowed to
-use any front-end JavaScript framework. Knowing that the company uses Vue.js, I
-felt it was best to use Vue for this assignment. I had not used Vue prior to
-this assignment, so I knew that much of the beginning days would be spent
-learning that framework. My initial thought was to spend a day setting up the
-back-end, 2 days learning Vue, and 2 to 3 days writing the code for the
-front-end. This timeline would take me about a week to complete, so my goal was
+For this project I used Ruby on Rails for my back-end and Vue.js for the front end.
+I had not used Vue prior to this assignment, so I knew that much of the beginning 
+days would be spent learning that framework. My initial thought was to spend a day 
+setting up the back-end, 2 days learning Vue, and 2 to 3 days writing the code for 
+the front-end. This timeline would take me about a week to complete, so my goal was
 to have this project finished and turned in exactly one week after receiving it.
 
 ### Problem Areas
@@ -117,11 +115,6 @@ up using Ruby on Rails, which I have done many projects in and am quite familiar
 with. As expected, this did not take long and I had my API functioning as
 intended by the first day. All that was required initially was one endpoint for
 a GET request.
-
-I felt my front-end design should emulate the look and feel of what the company
-is already doing. It would not make sense to have a completely different
-experience for the customer, so I spent time analyzing the application that
-already exists for the company in order to gain design inspiration.
 
 After a day of Vue video tutorials I felt comfortable starting my front-end
 project. Vue uses components and the idea was similar to the concept of modules
