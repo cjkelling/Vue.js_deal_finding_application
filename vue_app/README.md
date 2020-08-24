@@ -1,4 +1,4 @@
-# ibotta_project_vue_app
+# shopping_site_vue_app
 
 ## Project setup
 ```
