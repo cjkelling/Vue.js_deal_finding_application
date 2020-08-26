@@ -1,5 +1,7 @@
 <template>
-    <img class='logo-image' src='../assets/IbottaLogo_Primary_Pink.png'>
+    <div>
+      <h1 class="heading">Deal Finder</h1>
+    </div>
 </template>
 
 <script>
@@ -9,8 +11,12 @@
 </script>
 
 <style scoped>
-  .logo-image {
+  .heading {
     margin-left: 60px;
-    width: 15%;
+    margin-top: 20px;
+    font-size: 40px;
+    color: #0a7986;
+    font-family: 'museo-sans','Arial';
+    font-weight: bold;
   }
 </style>

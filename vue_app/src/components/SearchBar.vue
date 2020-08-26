@@ -33,5 +33,7 @@
   p {
     margin: 40px 60px;
     font-size: 20px;
+    color: #0a7986;
+    font-family: 'museo-sans','Arial';
   }
 </style>

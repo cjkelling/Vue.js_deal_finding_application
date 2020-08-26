@@ -23,7 +23,7 @@ describe("OfferCardDetailedView.vue", () => {
           name: 'Heavy',
           description: "3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club",
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
-          image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
+          image_url: 'http://s3.amazonaws.com/shopping-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
           retailers: ['Walmart']
         },
@@ -31,7 +31,7 @@ describe("OfferCardDetailedView.vue", () => {
           name: 'Medium',
           description: "3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club",
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
-          image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
+          image_url: 'http://s3.amazonaws.com/shopping-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
           retailers: ['Walmart']
         },
@@ -39,7 +39,7 @@ describe("OfferCardDetailedView.vue", () => {
           name: 'Medium Too',
           description: "3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club",
           terms: "Offer valid on Crystal Light Liquid in 3-pack of 1.62 fl oz. bottles Offer only redeemable at Sam's Club.",
-          image_url: 'http://s3.amazonaws.com/ibotta-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
+          image_url: 'http://s3.amazonaws.com/shopping-product/offer/Fs9JO4bjT5Kakh920d4WEw-large.png',
           expiration: '2016-04-03 06:59:00 UTC',
           retailers: ['Walmart']
         }
