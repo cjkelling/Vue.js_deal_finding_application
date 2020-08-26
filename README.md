@@ -23,8 +23,6 @@ seamless rendering and manipulation of elements in the DOM, which enables this
 application to work as a Single Page Application. The Vue application is fully
 tested using Jest.
 
-This project was begun on Monday, July 13th, and finished on Monday, July 20th.
-
 ### Setup:
 1. Ensure XCode and Command Line Tools are installed
 2. Install [brew](http://brew.sh/)
@@ -69,7 +67,7 @@ running before the Vue application is started in order for the Vue application
 to work. Once the Rails server is running, open a second terminal and
 'cd vue_app'. This will move you into the Vue application. Here you must run
 'npm run serve' to start the Vue server. If successful, the terminal will tell
-you that your Vue application can be accessed at http://localhost:8080/. This
+you that your Vue application can be accessed at http://localhost:8080. This
 will be the only route needed to view and interact with the application. My time
 working with this application utilized Chrome, but I did not test other browsers
 to verify compatibility.
@@ -81,11 +79,11 @@ test suite. To run the front-end tests, move to the Vue directory and run
 
 ### Estimated Time to Complete Project
 For this project I used Ruby on Rails for my back-end and Vue.js for the front end.
-I had not used Vue prior to this assignment, so I knew that much of the beginning 
+I had not used Vue prior to this project, so I knew that much of the beginning 
 days would be spent learning that framework. My initial thought was to spend a day 
 setting up the back-end, 2 days learning Vue, and 2 to 3 days writing the code for 
-the front-end. This timeline would take me about a week to complete, so my goal was
-to have this project finished and turned in exactly one week after receiving it.
+the front-end. Using this timeline, my goal was to have this project finished in a 
+week.
 
 ### Problem Areas
 There are two options for installing the Vue-CLI using npm:
@@ -101,28 +99,6 @@ switch to the newer 4.6 version of the CLI many days after I started the
 project. Upgrading the CLI to version 4.6 ultimately fixed all compatibility
 problems I was having.
 
-### My Process
-Upon receiving this project, my first step was to read the ReadMe document.
-This document explained the minimum requirements and also the nice to have
-features for the assignment. I did not understand every part of these
-requirements at first, so my next step was to go through the code that already
-existed. There was not much to look through, but reading the database CSV files
-cleared up what kind of tables I would need for my back-end and it cleared up
-the confusion I had upon first reading the ReadMe.
-
-Wanting to make some progress early, I tackled the back-end first. This was set
-up using Ruby on Rails, which I have done many projects in and am quite familiar
-with. As expected, this did not take long and I had my API functioning as
-intended by the first day. All that was required initially was one endpoint for
-a GET request.
-
-After a day of Vue video tutorials I felt comfortable starting my front-end
-project. Vue uses components and the idea was similar to the concept of modules
-that I was used to in Rails. Each module uses a template, script,
-styling format. I got lost a few times and spent another day on video tutorials
-but I was ultimately able to gain a firmer understanding of the functionality
-that Vue gives me as a framework.
-
 ### Future Iterations
 This project is still at a very early stage. Additional features include having
 user login functionality and user specific abilities. A user should be able to
@@ -133,10 +109,8 @@ offers they have accepted but may not want to use repeatedly.
 ### Final Thoughts
 Ultimately, the Vue features I was able to incorporate in this project include
 Vue Router(for Single Page Application support), Vuex(for state control), and
-Axios(for HTTP request support). My total comprehension of Vue is still at an
-introductory level, as I have only been doing it for one week, but I feel very
-proud of the progress I was able to make for this project. Being able to take on
-a project with no prior knowledge was challenging and fun. There is still a lot
-of work that could be done on this project to make it a fully operational
-application, but for the given time-frame and my starting knowledge, I am
-satisfied with the final product.
+Axios(for HTTP request support). Being able to take on a project with no prior 
+knowledge was challenging and fun. There is still a lot of work that could be 
+done on this project to make it a fully operational application, but for the 
+given time-frame and my starting knowledge, I am satisfied with the current 
+state of the project.
